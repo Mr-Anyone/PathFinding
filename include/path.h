@@ -26,7 +26,7 @@ namespace Path{
     using path = std::vector<int>;
     void print(const board_t& board);
     board_t make_board();
-    path  findPath();
+    path findPath();
 }
 
 #endif //PATHFINDING_PATH_H

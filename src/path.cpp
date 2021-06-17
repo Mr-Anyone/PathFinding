@@ -50,3 +50,9 @@ Path::board_t Path::make_board(){
     
     return result;
 }
+
+Path::path Path::findPath() {
+    Path::path result;
+
+    return result;
+}
