@@ -1,12 +1,15 @@
 #include <iostream>
-#include <cmath>
-#include <array>
 #include "path.h"
 
-
 int main(){
-    Path::board_t board {Path::make_board()};
-    Path::print(board);
+    grid_t grid {};
+    Path::Node start {0, 0, true};
+    Path::Node end {5, 5, true};
+    path_t paths {Path::findPath(grid, start, end)};
+
+    for(int i = static_cast<int> (paths.size()) - 1; i >= 0; --i){
+        std::cout << "Row: " << paths[i].m_row << " Column: " << paths[i].m_col <<  std::endl;
+    }
 
     return 0;
 }

@@ -5,28 +5,39 @@
 #include <vector>
 
 namespace Path{
-    inline constexpr int row_length {9};
-    inline constexpr int col_length {9};
+    inline constexpr int row_length {100};
+    inline constexpr int column_length {100};
+    class Node{
+    public:
+        int m_col {};
+        int m_row {};
+        double g_cost {};
+        double h_cost {};
+        double f_cost {};
+        bool m_traversable {};
+        Node* parent {nullptr};
 
-    using board_t = std::array<std::array<int, col_length>, row_length>;
+        Node(int row, int col, bool traversable)
+                : m_col {col}, m_row {row}, m_traversable {traversable}
+        {}
 
-    enum State{
-        start,
-        end,
-        blockage,
-        clear,
-        calculated,
+        Node() = default;
+
+        double fCost(const Node& startNode, const Node& endNode) const;
+        double fCost() const;
+        void setParent(const Node&node);
+        bool operator ==(const Node& node) const;
+        friend double distance(const Node& start, const Node& end);
+        friend std::vector<Path::Node> getNeighbour(const std::array<std::array<int, Path::column_length>, Path::row_length>& grid, const Node& node);
     };
 
-    struct Node{
-        int m_row;
-        int m_col;
-    };
+    std::vector<Path::Node> findPath(const std::array<std::array<int, Path::column_length>, Path::row_length>& grid,  Node& start, const Node& end);
+    double distance(const Node& start, const Node& end);
 
-    using path = std::vector<int>;
-    void print(const board_t& board);
-    board_t make_board();
-    path findPath();
+    std::vector<Path::Node> getNeighbour(const std::array<std::array<int, Path::column_length>, Path::row_length>& grid, const Node& node);
 }
+
+using path_t = std::vector<Path::Node>;
+using grid_t = std::array<std::array<int, Path::column_length>, Path::row_length>;
 
 #endif //PATHFINDING_PATH_H
