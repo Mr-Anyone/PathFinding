@@ -43,8 +43,10 @@ std::vector<Path::Node>
     std::vector<Path::Node> result {};
     for(int i = -1; i<=1; ++i){
         for(int x = -1; x <=1; ++ x){
-            if( (x != 0 || i != 0)  && node.m_row + i >= 0 && node.m_row + i <= Path::row_length - 1 && node.m_col + x >=0 && node.m_col + x <= Path::column_length - 1) // Not the center block
-                result.emplace_back(i + node.m_row, x + node.m_col, true);
+            if( (x != 0 || i != 0)  && node.m_row + i >= 0 && node.m_row + i <= Path::row_length - 1 && node.m_col + x >=0 && node.m_col + x <= Path::column_length - 1) {
+                result.emplace_back(i + node.m_row, x + node.m_col,
+                                    !(grid[i + node.m_row][x + node.m_col] == Path::State::blockage));
+            }
         }
     }
 

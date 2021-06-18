@@ -5,8 +5,14 @@
 #include <vector>
 
 namespace Path{
-    inline constexpr int row_length {100};
-    inline constexpr int column_length {100};
+    inline constexpr int row_length {3};
+    inline constexpr int column_length {3};
+
+    enum State{
+        blockage,
+        clearance
+    };
+
     class Node{
     public:
         int m_col {};
