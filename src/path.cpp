@@ -2,6 +2,7 @@
 #include <iostream>
 #include "path.h"
 #include <cmath>
+#include <cassert>
 
 bool Path::Node::operator==(const Node &node) const {
     return node.m_col == this->m_col && node.m_row == this->m_row;
@@ -13,8 +14,7 @@ double Path::distance(const Node &start, const Node &end) {
 
 
 double Path::Node::fCost(const Node& startNode, const Node& endNode) const {
-
-    return distance(startNode, *this)+ distance(endNode, *this);;
+    return distance(startNode, *this)+ distance(endNode, *this);
 }
 
 double Path::Node::fCost() const {
