@@ -1,18 +1,25 @@
-#include <iostream>
+#include <SFML/Window.hpp>
 #include "path.h"
+#include <iostream>
 
-constexpr int blockage = static_cast<int> (Path::State::blockage);
-constexpr int clearance = static_cast<int> (Path::State::clearance);
+
+constexpr int video_with {800};
+constexpr int video_height {600};
 
 int main(){
-    grid_t grid {clearance,clearance, clearance, clearance, blockage, clearance,clearance, clearance, clearance};
-    Path::Node start {0, 0, true};
-    Path::Node end {2, 2, true};
-    path_t paths {Path::findPath(grid, start, end)};
+    std::cout << "Built system worked" << std::endl;
+    sf::Window window(sf::VideoMode(video_with, video_height), "Path Finding");
 
-    for(int i = static_cast<int> (paths.size()) - 1; i >= 0; --i){
-        std::cout << "Row: " << paths[i].m_row << " Column: " << paths[i].m_col <<  std::endl;
+    while(window.isOpen()){
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            // "close requested" event: we close the window
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
     }
+
 
     return 0;
 }
