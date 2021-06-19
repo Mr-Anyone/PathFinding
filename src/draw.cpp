@@ -40,6 +40,13 @@ void drawNodes(sf::RenderWindow& window, const grid_t& grid){
                 case Path::State::blockage:
                     drawNode(window, sf::Color::White, x, i);
                     break;
+                case Path::State::startnode:
+                    drawNode(window, sf::Color::Cyan, x, i);
+                    break;
+                case Path::State::endnode:
+                    drawNode(window, sf::Color::Black, x, i);
+                    break;
+
             }
 
         }
@@ -48,6 +55,6 @@ void drawNodes(sf::RenderWindow& window, const grid_t& grid){
 
 void draw_path(sf::RenderWindow& window, const path_t& path){
     for(auto& ele: path){
-        drawNode(window, sf::Color::Green, ele.m_row, ele.m_col);
+        drawNode(window, sf::Color::Green, ele.m_col, ele.m_row);
     }
 }
