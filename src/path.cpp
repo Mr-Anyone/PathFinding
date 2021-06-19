@@ -143,3 +143,12 @@ path_t Path::findPath(const grid_t& grid, Node& start, const Node& end){
     std::cout << "No Solution found" << std::endl;
     return path_t {}; // Empty array
 }
+
+grid_t makeGrid(){
+    grid_t grid;
+    for(int i=0; i<Path::row_length; ++i)
+        for(int x=0; x<Path::column_length; ++x)
+            grid[i][x] = Path::State::clearance;
+
+    return grid;
+}
