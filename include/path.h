@@ -5,12 +5,14 @@
 #include <vector>
 
 namespace Path{
-    inline constexpr int row_length {3};
-    inline constexpr int column_length {3};
+    inline constexpr int row_length {54};
+    inline constexpr int column_length {96};
 
     enum State{
         blockage,
-        clearance
+        clearance,
+        startnode,
+        endnode
     };
 
     class Node{
@@ -46,4 +48,5 @@ namespace Path{
 using path_t = std::vector<Path::Node>;
 using grid_t = std::array<std::array<int, Path::column_length>, Path::row_length>;
 
+grid_t makeGrid();
 #endif //PATHFINDING_PATH_H
